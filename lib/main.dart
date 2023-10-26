@@ -45,6 +45,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: AppColors.primaryColor,
+            colorScheme: ThemeData()
+                .colorScheme
+                .copyWith(primary: AppColors.primaryColor),
             scaffoldBackgroundColor: AppColors.backgroundColor,
             fontFamily: kFontFamily),
         builder: EasyLoading.init(),

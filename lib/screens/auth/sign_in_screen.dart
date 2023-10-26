@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_food_app/config/config.dart';
+import 'package:flutter_food_app/config/validator.dart';
 import 'package:flutter_food_app/providers/providers.dart';
 import 'package:flutter_food_app/screens/home/home_screen.dart';
 import 'package:flutter_food_app/widgets/custom_text_field.dart';
@@ -171,7 +172,6 @@ class _SignInState extends State<SignInScreen> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 18,
-                                    fontFamily: 'Roboto',
                                   ),
                                 ),
                               ),
@@ -198,27 +198,15 @@ class _SignInState extends State<SignInScreen> {
                                     hintText: 'Ex.. example@gmail.com',
                                     labelText: 'Email Address',
                                     keyboardType: TextInputType.emailAddress,
-                                    validator: (String? value) {
-                                      if (value == '') {
-                                        return 'Email address is required';
-                                      } else if (!value!.contains('@')) {
-                                        return 'Enter valid email address';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (value) =>
+                                        Validator.email(value!),
                                   ),
                                   TextFormField(
                                     obscureText: isPasswordVisible,
                                     controller: passwordLoginController,
+                                    validator: (value) =>
+                                        Validator.password(value!),
                                     keyboardType: TextInputType.visiblePassword,
-                                    validator: (String? value) {
-                                      if (value == '') {
-                                        return 'Password is required';
-                                      } else if (value!.length < 6) {
-                                        return 'Password must be 6 digit long';
-                                      }
-                                      return null;
-                                    },
                                     decoration: InputDecoration(
                                       hintText: 'Enter your password',
                                       hintStyle: const TextStyle(),
@@ -286,39 +274,23 @@ class _SignInState extends State<SignInScreen> {
                                     hintText: 'Ex.. Mahmoud R Hamza',
                                     labelText: 'Your Name',
                                     keyboardType: TextInputType.emailAddress,
-                                    validator: (String? value) {
-                                      if (value == '') {
-                                        return 'Name is required';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (value) =>
+                                        Validator.name(value!),
                                   ),
                                   CustomTextField(
                                     controller: emailSignUpController,
                                     hintText: 'Ex.. example@gmail.com',
                                     labelText: 'Email Address',
                                     keyboardType: TextInputType.emailAddress,
-                                    validator: (String? value) {
-                                      if (value == '') {
-                                        return 'Email address is required';
-                                      } else if (!value!.contains('@')) {
-                                        return 'Enter valid email address';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (value) =>
+                                        Validator.email(value!),
                                   ),
                                   TextFormField(
                                     obscureText: isPasswordVisible,
                                     controller: passwordSignUpController,
                                     keyboardType: TextInputType.visiblePassword,
-                                    validator: (String? value) {
-                                      if (value == '') {
-                                        return 'Password is required';
-                                      } else if (value!.length < 6) {
-                                        return 'Password must be 6 digit long';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (value) =>
+                                        Validator.password(value!),
                                     decoration: InputDecoration(
                                       hintText: 'Enter password',
                                       labelText: 'Password',
